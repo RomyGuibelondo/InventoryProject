@@ -10,6 +10,9 @@ function App2() {
           <Route path='/Admin/*' exact>
             <Admin />
           </Route>
+          <Route path='/Admin' exact>
+            <Admin />
+          </Route>
           <Route path='/' exact>
             <App />
           </Route>
