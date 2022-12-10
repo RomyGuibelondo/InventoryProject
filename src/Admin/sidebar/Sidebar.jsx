@@ -1,6 +1,7 @@
 import React from 'react'
 import './sidebar.css'
 import { Home, Timeline, TrendingUp, PermIdentity, Storefront, AttachMoney, BarChart, MailOutline, DynamicFeed, ChatBubbleOutline, WorkOutline, ReportProblem} from '@mui/icons-material'
+import { Link } from 'react-router-dom'
 
 function Sidebar() {
   return (
@@ -26,14 +27,24 @@ function Sidebar() {
             <div className="sidebarMenu">
                 <h3 className="sidebarTitle">Quick Menu</h3>
                 <ul>
-                    <li className="sidebarListItem">
-                        <PermIdentity className='sidebarIcon'/> 
-                        Users
-                    </li>
-                    <li className="sidebarListItem">
-                        <Storefront className='sidebarIcon'/> 
-                        Products
-                    </li>
+                    <Link to="/Admin/User" className='link'>
+                        <li className="sidebarListItem">
+                            <PermIdentity className='sidebarIcon'/> 
+                            Users
+                        </li>
+                    </Link>
+                    <Link to="/Admin/Products" className='link'>
+                        <li className="sidebarListItem">
+                            <Storefront className='sidebarIcon'/> 
+                            Products
+                        </li>
+                    </Link>
+                    <Link className='link'>
+                        <li className="sidebarListItem">
+                            <AttachMoney className='sidebarIcon'/> 
+                            Transactions
+                        </li>
+                    </Link>
                     <li className="sidebarListItem">
                         <AttachMoney className='sidebarIcon'/> 
                         Transactions
