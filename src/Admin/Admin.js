@@ -13,10 +13,10 @@ function Admin() {
       <div className='containerAdmin'>
           <Sidebar />
           <Switch>
-              <Route exact path="/Admin" element={<Home/>}>
+              <Route exact path="/Admin">
                 <Home />
               </Route>
-              <Route exact path="/Admin/User" element={<UserList/>}>
+              <Route exact path="/Admin/User">
                 <UserList />
               </Route>
           </Switch>

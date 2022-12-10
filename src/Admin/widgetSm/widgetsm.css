@@ -27,7 +27,6 @@
 .widgetSmUser{
     display: flex;
     font-display: column;
-    gap: 20px;
 }
 .widgetSmUsername{
     font-weight: 600;

@@ -1,15 +1,24 @@
 import React from 'react'
 import "./userList.css"
 import { DataGrid } from '@mui/x-data-grid'
+import { DeleteOutline } from '@mui/icons-material';
+import { UserRows } from './DummyUser';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+
 
 
 function UserList() {
+  const [data, setData] = useState(UserRows)
+  const handleDelete = (id) =>{
+    setData(data.filter(item=>item.id !== id))
+  }
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'user', headerName: 'User', width: 200, renderCell: (params)=>{
+    { field: 'username', headerName: 'User', width: 200, renderCell: (params)=>{
         return (
           <div className='userListUser'>
-            <img src={params.row.avatar} alt=""/>
+            <img className='userListImg' src={params.row.avatar} alt=""/>
             {params.row.username}
           </div>
         )
@@ -25,36 +34,33 @@ function UserList() {
       headerName: 'Status',
       width: 90,
     },
+    {
+      field: 'action',
+      headerName: 'Action',
+      width: 160,
+      renderCell: (params)=>{
+        return(
+          <>
+          <Link to={"/Admin/User/"+params.row.id}>
+            <button className='userListEdit'>Edit</button>
+          </Link>
+            <DeleteOutline className='userListDelete' onClick={()=>handleDelete(params.row.id)}/>
+          </>
+        )
+      }
+    },
 
   ];
   
-  const rows = [
-    { id: 1, username: 'Snow', email: 'Jon@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg=" },
-    { id: 2, username: 'Lannister', email: 'Cersei@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg=" },
-    { id: 3, username: 'Lannister', email: 'Jaime@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg=" },
-    { id: 4, username: 'Stark', email: 'Arya@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg=" },
-    { id: 5, username: 'Targaryen', email: 'Daenerys@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg=" },
-    { id: 6, username: 'Melisandre', email: 'melisandre@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg=" },
-    { id: 7, username: 'Clifford', email: 'Ferrara@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg=" },
-    { id: 8, username: 'Frances', email: 'Rossini@gmail.com', status: "active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg="},
-    { id: 9, username: 'Roxie', email: 'Harvey@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg="},
-    { id: 10, username: 'Snow', email: 'Jon@gmail.com', status: "active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg="},
-    { id: 11, username: 'Lannister', email: 'Cersei@gmail.com', status: "active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg="},
-    { id: 12, username: 'Lannister', email: 'Jaime@gmail.com', status: "active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg="},
-    { id: 13, username: 'Stark', email: 'Arya@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg="},
-    { id: 14, username: 'Targaryen', email: 'Daenerys@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg=" },
-    { id: 15, username: 'Melisandre', email: 'melisadre@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg=" },
-    { id: 16, username: 'Clifford', email: 'Ferrara@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg="},
-    { id: 17, username: 'Frances', email: 'Rossini@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg="},
-    { id: 18, username: 'Roxie', email: 'Harvey@gmail.com', status:"active", transaction:"$123.00", avatar:"https://media.istockphoto.com/id/1311084168/photo/overjoyed-pretty-asian-woman-look-at-camera-with-sincere-laughter.jpg?s=612x612&w=0&k=20&c=akS4eKR3suhoP9cuk7_7ZVZrLuMMG0IgOQvQ5JiRmAg="},
-  ];
+  
   return (
     <div className='userList'>
       <DataGrid
-        rows={rows}
+        disableSelectionOnClick
+        rows={data}
         columns={columns}
-        pstatusSize={10}
-        rowsPerPstatusOptions={[5]}
+        pageSize={10}
+        rowsPerPageOptions={[5]}
         checkboxSelection
       />
     </div>
