@@ -10,18 +10,24 @@ function Sidebar() {
             <div className="sidebarMenu">
                 <h3 className="sidebarTitle">Dashboard</h3>
                 <ul>
-                    <li className="sidebarListItem active">
-                        <Home className='sidebarIcon' /> 
-                        Home
-                    </li>
-                    <li className="sidebarListItem">
-                        <Timeline className='sidebarIcon'/> 
-                        Analiytics
-                    </li>
-                    <li className="sidebarListItem">
-                        <TrendingUp className='sidebarIcon'/> 
-                        Sales
-                    </li>
+                    <Link to="/admin" className='link'>
+                        <li className="sidebarListItem active">
+                            <Home className='sidebarIcon' /> 
+                            Home
+                        </li>
+                    </Link>
+                    <Link to="/admin" className='link'>
+                        <li className="sidebarListItem">
+                            <Timeline className='sidebarIcon'/> 
+                            Analiytics
+                        </li>
+                    </Link>
+                    <Link to="/admin" className='link'>
+                        <li className="sidebarListItem">
+                            <TrendingUp className='sidebarIcon'/> 
+                            Sales
+                        </li>
+                    </Link>
                 </ul>
             </div>
             <div className="sidebarMenu">
@@ -45,10 +51,6 @@ function Sidebar() {
                             Transactions
                         </li>
                     </Link>
-                    <li className="sidebarListItem">
-                        <AttachMoney className='sidebarIcon'/> 
-                        Transactions
-                    </li>
                     <li className="sidebarListItem">
                         <BarChart className='sidebarIcon'/> 
                         Reports

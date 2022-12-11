@@ -6,8 +6,10 @@ import  Home  from './pages/home/Home'
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import UserList from './pages/userList/UserList'
 import User from './pages/user/User'
-import NewUser from './pages/newPage/NewUser'
+import NewUser from './pages/newUser/NewUser'
 import ProductList from './pages/productList/ProductList'
+import Product from './pages/product.jsx/Product'
+import NewProduct from './pages/newProduct/NewProduct'
 
 
 function Admin() {
@@ -16,7 +18,7 @@ function Admin() {
       <TopBar />
       <div className='containerAdmin'>
           <Sidebar />
-          <Switch>
+          <Switch className="childContainer">
               <Route exact path="/Admin">
                 <Home />
               </Route>
@@ -29,15 +31,17 @@ function Admin() {
               <Route exact path="/Admin/NewUser">
                 <NewUser/>
               </Route>
+
               <Route exact path="/Admin/Products">
                 <ProductList/>
               </Route>
-              <Route exact path="/Admin/Products/:productsId">
-                <User />
+              <Route exact path="/Admin/Product/:productrId">
+                <Product />
               </Route>
-              <Route exact path="/Admin/NewProduct">
-                <NewUser/>
+              <Route exact path="/Admin/Newproduct">
+                <NewProduct />
               </Route>
+
           </Switch>
       </div>
     </Router>

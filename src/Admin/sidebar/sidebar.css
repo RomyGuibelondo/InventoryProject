@@ -5,10 +5,11 @@
     background-color: var(--primary-color);
     position: sticky;
     top: 50px;
+
 }
 .sidebarWrapper{
-    padding: 20px;
     color: var(--white-color);
+    padding: 20px;
 }
 .sidebarMenu{
     margin-bottom: 10px;
@@ -28,7 +29,6 @@
     align-items: center;
     border-radius: 5px;
 }
-.sidebarListItem.active,
 .sidebarListItem:hover{
     background-color: teal;
 }
